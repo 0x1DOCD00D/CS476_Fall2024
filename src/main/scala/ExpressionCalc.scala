@@ -3,7 +3,7 @@ import ExpressionCalc.ExpOperation.Add
 
 object ExpressionCalc:
   type EnvironmentTable = Map[String, Int]
-  val envTable: EnvironmentTable = Map("evenNumber" -> 2)
+  given envTable: EnvironmentTable = Map("evenNumber" -> 2)
 
   enum ExpOperation:
     case Value(i: Int)
@@ -14,7 +14,7 @@ object ExpressionCalc:
 
   def eval(exp: ExpOperation): Int = exp match
     case ExpOperation.Value(i) => i
-    case ExpOperation.Variable(s) => envTable.getOrElse(s, throw new Exception("not found"))
+    case ExpOperation.Variable(s) => summon[EnvironmentTable].getOrElse(s, throw new Exception("not found"))
     case ExpOperation.Add(p1, p2) => eval(p1) + eval(p2)
     case ExpOperation.Mult(p1, p2) => eval(p1) * eval(p2)
     case ExpOperation.Sub(p1, p2) => eval(p1) - eval(p2)
@@ -29,6 +29,6 @@ object ExpressionCalc:
       Add(Mult(Value(2),Add(Value(3),Value(5))),Add(Value(5),Value(7)))
     )
     println(
-      eval(Add(Mult(Variable("evenNumbe1"), Add(Value(3), Value(5))), Sub(Value(5), Value(7))))
+      eval(Add(Mult(Variable("evenNumber"), Add(Value(3), Value(5))), Sub(Value(5), Value(7))))
     )
   }
