@@ -6,9 +6,29 @@ object ExpressionCalc:
   type EnvironmentTable = mutable.Map[String, Int]
   type EnvironmentTableContext = EnvironmentTable ?=> Int
   given envTable: EnvironmentTable = mutable.Map("evenNumber" -> 2)
+//  given envTable1: EnvironmentTable = mutable.Map("evenNumber" -> 2)
 
   def f(v: Int) = v+2
   def ff(v: Int) = ???//g+2
+
+  def outerScope(param: String) = {
+    var vasu = 476
+    println(s"outer = $param")
+
+    def innerScope(param:String) = {
+      def vasuScope(param:String) = {
+        val vasu = Map("c"->5)
+        println(vasu)
+      }
+      vasu = 1
+//      val vasu = "441"
+      println(s"inner = $param")
+      println(vasu)
+      vasuScope("fff")
+    }
+    innerScope(param + "6")
+
+  }
 
   enum ExpOperation:
     case Value(i: Int)
@@ -30,6 +50,7 @@ object ExpressionCalc:
 
   def main(args: Array[String]): Unit = {
     import ExpOperation.*
+    outerScope("5")
 
     println(
       eval(Add(Value(2),Value(7)))
