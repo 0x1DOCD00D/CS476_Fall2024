@@ -16,7 +16,7 @@ object PeanoArith:
 //        not needed since Zero already has add method
 //        case Zero => p1
 //        Sbt warning: Unreachable case except for null (if this is intentional, consider writing case null => instead).
-        case null => throw new RuntimeException("ouch!!!")
+        case _ => throw new RuntimeException("ouch!!!")
 
 
   def main(args: Array[String]): Unit = {
