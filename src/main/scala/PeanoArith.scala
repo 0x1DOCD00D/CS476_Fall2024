@@ -8,10 +8,15 @@ object PeanoArith:
 
   case class Succ(p: Nat) extends Nat:
     override def add(p1: Nat): Nat =
-      p match
+//    matching with p removes the outermost Succ so we
+//    match with this (the object itself instead of the one it wraps)
+//    which is 'succ(p)' or 'this' instead of p
+      this match
         case Succ(x) => x.add(Succ(p1))
-        case Zero => p1
-        case _ => throw new RuntimeException("ouch!!!")
+//        not needed since Zero already has add method
+//        case Zero => p1
+//        Sbt warning: Unreachable case except for null (if this is intentional, consider writing case null => instead).
+        case null => throw new RuntimeException("ouch!!!")
 
 
   def main(args: Array[String]): Unit = {
