@@ -3,20 +3,12 @@ object PeanoArith:
   trait Nat:
     def add(p1: Nat):Nat
 
-  case object Zero extends Nat:
+  private case object Zero extends Nat:
     override def add(p1: Nat): Nat = p1
 
-  case class Succ(p: Nat) extends Nat:
+  private case class Succ(p: Nat) extends Nat:
     override def add(p1: Nat): Nat =
-//    matching with p removes the outermost Succ so we
-//    match with this (the object itself instead of the one it wraps)
-//    which is 'succ(p)' or 'this' instead of p
-      this match
-        case Succ(x) => x.add(Succ(p1))
-//        not needed since Zero already has add method
-//        case Zero => p1
-//        Sbt warning: Unreachable case except for null (if this is intentional, consider writing case null => instead).
-        case _ => throw new RuntimeException("ouch!!!")
+      if this == Zero then p1 else p.add(Succ(p1))
 
 
   def main(args: Array[String]): Unit = {
@@ -27,4 +19,12 @@ object PeanoArith:
     println(
       three.add(two)
     )
+    println(
+      Zero.add(two)
+    )
+
+    println(
+      three.add(Zero)
+    )
+
   }
