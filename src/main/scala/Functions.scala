@@ -11,8 +11,10 @@ object Functions:
     else println("nothing")
 
   def MarkWhile(cond: => Boolean)(code: => Int): Int = {
-    println(s"Within Mark's if $z")
-    if cond then MarkWhile(cond)(code)
+    if cond then
+      println(s"Within Mark's if $z")
+      code // Executes the block which increments 'z'
+      MarkWhile(cond)(code)
     else 0
   }
   def main(args: Array[String]): Unit = {
