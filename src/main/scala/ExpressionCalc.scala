@@ -41,7 +41,9 @@ object ExpressionCalc:
   def eval(exp: ExpOperation): EnvironmentTableContext = exp match
     case ExpOperation.Value(i) => i
     case ExpOperation.Variable(s) => summon[EnvironmentTable].getOrElse(s, throw new Exception("not found"))
-    case ExpOperation.Add(p1, p2) => eval(p1) + eval(p2)
+    case ExpOperation.Add(p1, p2) =>
+      while(true) do {}
+      eval(p1) + eval(p2)
     case ExpOperation.Mult(p1, p2) => eval(p1) * eval(p2)
     case ExpOperation.Sub(p1, p2) => eval(p1) - eval(p2)
     case :=(v, i) =>
@@ -55,9 +57,10 @@ object ExpressionCalc:
     println(
       eval(Add(Value(2),Value(7)))
     )
-    println(
-      Add(Mult(Value(2),Add(Value(3),Value(5))),Add(Value(5),Value(7)))
-    )
+    println {
+      val x = Add(Value(3),Value(5))
+      Add(Mult(Value(2),x),Add(Value(5),Value(7)))
+    }
     println(
       eval(:=(Variable("x"), Value(5)))
     )
