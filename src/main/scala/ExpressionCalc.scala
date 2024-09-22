@@ -8,6 +8,17 @@ object ExpressionCalc:
   given envTable: EnvironmentTable = mutable.Map("evenNumber" -> 2)
 //  given envTable1: EnvironmentTable = mutable.Map("evenNumber" -> 2)
 
+  def myScopeBorder(sc: => Int) :Int = sc
+
+  myScopeBorder {
+    myScopeBorder{
+      val x = 5
+      x
+    }
+    val x = 3
+    x
+  }
+
   def f(v: Int) = v+2
   def ff(v: Int) = ???//g+2
 
