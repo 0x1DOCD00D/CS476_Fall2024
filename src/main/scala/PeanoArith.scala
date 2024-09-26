@@ -28,7 +28,7 @@ object PeanoArith:
     override def div(p1: Nat): Nat =
       p1 match
         case Zero => throw new Exception("Division by zero")
-        case this => Succ(Zero)
+//        case this  => Succ(Zero)
         case Succ(Zero) => this
         case _ => if (this == Zero) Zero else if (this.subtract(p1)!=Zero) this.subtract(p1).div(p1).add(Succ(Zero)) else this.subtract(p1).div(p1)
 

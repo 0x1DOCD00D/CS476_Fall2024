@@ -26,7 +26,7 @@ object ExperimentsWithFuncz:
 //    println(y(200))
     println(mf((s:String)=> s.length, "CS476" + " TBH18F"))
     println{
-      functionComposer(f, g)("Kaushal")
+//      functionComposer(f, g)("Kaushal")
     }
 //    println(mf1((s:String)=> s.length, 78))
   }
