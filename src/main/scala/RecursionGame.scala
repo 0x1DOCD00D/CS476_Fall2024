@@ -3,6 +3,8 @@ object RecursionGame:
 
   def hof1(f: Int=>Int, n: Int): Int = f(n)
 
+
+//  def Y(g: (Int=>Int)=>(Int=>Int)): Int =>Int = (i:Int) => g(Y(g))(i)
   def Y(g: (Int=>Int)=>(Int=>Int)): Int =>Int = (i:Int) => g(Y(g))(i)
 //    (i:Int) => g(Y(g))(i) => if 3 == 0 then 1 else 3*Y(g)(3-1)(Y(g))(3) =>
 //    3*Y(g)(2) =>3*g(Y(g))(2)
@@ -22,10 +24,12 @@ object RecursionGame:
         (h: Int => Int) => (n: Int) => if n == 0 then 1 else n * h(n - 1)
       )(5)
     }
-//    println{
-//      hof1(
-//        (n:Int)=>if n == 0 then 1 else n*???(n-1)
-//        , 6
-//      )
-//    }
+    println{
+      hof1(
+        Y(
+          (h: Int => Int) => (n: Int) => if n == 0 then 1 else n * h(n - 1)
+        )
+        , 6
+      )
+    }
   }
