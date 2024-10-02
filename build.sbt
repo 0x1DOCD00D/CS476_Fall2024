@@ -4,5 +4,7 @@ ThisBuild / scalaVersion := "3.5.0"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "Exercises"
+    name := "Exercises",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+    testFrameworks += new TestFramework("org.scalatest.tools.Framework")
   )
