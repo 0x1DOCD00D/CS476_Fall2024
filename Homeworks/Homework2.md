@@ -68,7 +68,7 @@ Sunday, November, 3, 2024 at 10PM CST you should submit a link to your Github re
 
 ## Evaluation criteria
 - the maximum grade for this homework is 15%. Points are subtracted from this maximum grade: for example, saying that 2% is lost if some requirement is not completed means that the resulting grade will be 15%-2% => 13%; if the core homework functionality does not work, no bonus points will be given;
-- only some basic expression language is implemented without scopes and assignments and TestGate and nothing else is done: up to 10% lost;
+- only some basic expression language is implemented without classes and inheritance and the constructs from the first homeworks and nothing else is done: up to 10% lost;
 - for each use of **var** instead of **val** 0.3% will be substracted from the maximum grade;
 - for each non-spelling-related problem reported by the IntelliJ code analysis and inspection tool 0.2% will be substracted from the maximum grade;
 - having less than five unit and/or integration tests that show how your implemented features work: up to 5% lost;
