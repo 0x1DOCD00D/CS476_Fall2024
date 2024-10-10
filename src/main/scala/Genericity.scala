@@ -2,6 +2,7 @@ import scala.collection.mutable.ListBuffer
 
 object Genericity:
 
+  def doX[T <: Int](x: T, y:T) = x + y
   def id[TV](i: TV): TV = i
   def idf[TI]: TI=>String = (i:TI)=>i.toString
 

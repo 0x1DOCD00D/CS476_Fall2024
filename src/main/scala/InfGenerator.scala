@@ -4,6 +4,7 @@ object InfGenerator:
   def inf(bc: Int): LazyList[Int] = bc #:: inf(bc+1)
 
   def main(args: Array[String]): Unit = {
+    println(inf(2))
     val ll = inf(1)
     val ll1 = ll.take(10).toList
     val ll2 = ll.drop(10).take(10).toList
