@@ -11,6 +11,10 @@ object PartialFunks:
     case 4 => println("four")
   }
 
+  val pf5: PartialFunction[Int, Unit] = {
+    case 4 => println("four")
+  }
+
   def accumulate[A, B](pfs: PartialFunction[A, B]*): PartialFunction[A, B] = {
     pfs.reduce(_ orElse _)
   }
@@ -24,11 +28,13 @@ object PartialFunks:
 
 
   def main(args: Array[String]): Unit = {
+    new ExceptionMaker().f(-1)//.lift
     pf2(2)
     if pf2.isDefinedAt(3) then pf2(3) else println("ouch!!!")
+    println(pf2.lift(3))
 
-    (pf2 orElse pf3 orElse pf4)(3)
-    val pf = accumulate(pf2, pf3, pf4)
+    (pf2 orElse pf3 orElse pf4 orElse pf5)(4)
+    val pf = accumulate(pf2, pf3, pf5, pf4)
     pf(4)
 
   }
