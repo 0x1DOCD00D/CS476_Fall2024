@@ -41,6 +41,7 @@ object ExpressionCalc:
 
   }
 
+//  exp ::= mult | add | Int | exp
   enum ExpOperation:
     case Value(i: Int)
     case Variable(s: String)

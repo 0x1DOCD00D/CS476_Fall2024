@@ -1,7 +1,12 @@
 object RecursionGame:
   val fact1:Int=>Int = (n:Int)=>if n == 0 then 1 else n*fact1(n-1)
 
-  def hof1(f: Int=>Int, n: Int): Int = f(n)
+  def hof1(g: Int=>Int, n: Int): Int = ((n:Int)=>if n == 0 then 1 else n*g(n-1))(n)
+  def hack(g: Int=>Int)(n: Int): Int=>Int = ???
+//  hack(Fix(f))
+  
+  
+//  hof1((n:Int)=>if n == 0 then 1 else n*???(n-1), 5)
 
 
 //  def Y(g: (Int=>Int)=>(Int=>Int)): Int =>Int = (i:Int) => g(Y(g))(i)
