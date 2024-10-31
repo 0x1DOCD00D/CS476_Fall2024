@@ -10,6 +10,8 @@ object PCFRecursion:
     else (i:Int) => f(i)
   }
 
+  val etaF = applyFunctionNtimes
+
   def main(args: Array[String]): Unit = {
     println(_f(2))
     println(ff(2))

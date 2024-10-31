@@ -19,13 +19,24 @@ object RecursionGame:
 //    if 0 == 0 then 1 else 3*2*1*Y(g)
 //   3*2*1*1
 
+  def YY[A, B](f: (A => B) => (A => B)): A => B = {
+    case class Wrapper(wrapped: Wrapper => (A => B))
+
+    val g: Wrapper => (A => B) = {
+      w => f(a => w.wrapped(w)(a))
+    }
+
+    g(Wrapper(g))
+  }
+
+
   def main(args: Array[String]): Unit = {
 //    println(identity)
 //    println(fact1(6))
 //    println(hof1(fact1, 6))
 //    Y(g)(3) =>
     println {
-      Y(
+      YY(
         (h: Int => Int) => (n: Int) => if n == 0 then 1 else n * h(n - 1)
       )(5)
     }
