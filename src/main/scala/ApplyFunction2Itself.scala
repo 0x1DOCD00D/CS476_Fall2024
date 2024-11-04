@@ -1,6 +1,6 @@
 object ApplyFunction2Itself:
-  def f[T](p: T => T): T => T =
-    (i: T) => p(i)
+  def f[T](p: T => T): T => T = p
+//    (i: T) => p(i)
 
   val computation = f(f(f(_: Int => Int)))
   
@@ -9,4 +9,3 @@ object ApplyFunction2Itself:
       computation((i: Int) => i + 1)(5)
     }
   }
- 
