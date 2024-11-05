@@ -22,13 +22,9 @@ object RecursionGame:
   def YY[A, B](f: (A => B) => (A => B)): A => B = {
     case class Wrapper(wrapped: Wrapper => (A => B))
 
-    val g: Wrapper => (A => B) = {
-      w => f(a => w.wrapped(w)(a))
-    }
-
+    val g: Wrapper => (A => B) = w => f(a => w.wrapped(w)(a))
     g(Wrapper(g))
   }
-
 
   def main(args: Array[String]): Unit = {
 //    println(identity)
